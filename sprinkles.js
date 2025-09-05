@@ -70,6 +70,19 @@
   document.addEventListener('scroll', loadNonCriticalAnalyticsOnInteraction, { once: true });
   setTimeout(loadNonCriticalAnalyticsOnInteraction, 2000);
 
+  // Register Service Worker for aggressive caching
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then((registration) => {
+          console.log('SW registered: ', registration);
+        })
+        .catch((registrationError) => {
+          console.log('SW registration failed: ', registrationError);
+        });
+    });
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => { initHeroes(); initLazyVideos(); });
   } else {
