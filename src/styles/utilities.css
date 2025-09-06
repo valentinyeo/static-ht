@@ -1,0 +1,80 @@
+/* General Utility Classes */
+
+section {
+  padding: 60px 0px;
+}
+
+
+
+/* Subheadline Utility Class */
+.subheadline {
+  font-size: 1.125rem;
+  color: white;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .subheadline {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Gradient Container Utility */
+.rounded-gradient-bg {
+  border-radius: var(--radius-gradient-bg);
+}
+
+/* Mobile Media Positioning Utilities */
+@media (max-width: 768px) {
+  .mobile-object-position {
+    object-position: var(--mobile-object-position, center);
+  }
+  
+  .mobile-scale {
+    transform: scale(var(--mobile-scale, 1));
+  }
+  
+  .mobile-transform {
+    transform: var(--mobile-transform, none);
+  }
+}
+
+/* VWO Testing Styles */
+.VWO_TEST {
+  /* Only apply button styling to actual button elements, not divs */
+  display: none !important;
+}
+
+
+
+.VWO_TESTIMONIAL {
+  display: none;
+} 
+
+.VWO_306{
+  display: none !important;
+}
+
+.VWO_349{
+  display: none !important;
+}
+
+.VWO_393{
+  display: none !important;
+}
+
+.VWO_381{
+  display: none !important;
+}
+
+.VWO_365{
+  display: none !important;
+}
+
+.VWO_392{
+  display: none !important;
+}
+

@@ -1,0 +1,108 @@
+name: 🚀 Deploy to Cloudflare Workers
+
+on:
+  # Deploy on push to main branch
+  push:
+    branches: [Removed-old-static-code, main]
+
+  # Deploy on pull request (preview deployment)
+  pull_request:
+    branches: [Removed-old-static-code, main]
+
+  # Allow manual deployment
+  workflow_dispatch:
+
+# Cancel previous deployments for the same PR/branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Job 1: Lint and Test
+  test:
+    name: 🧪 Test & Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📥 Install dependencies
+        run: npm ci
+
+      - name: 🔍 Run ESLint
+        run: npm run lint
+        continue-on-error: false
+
+      - name: 🧪 Run tests
+        run: npm test --if-present
+
+      - name: 🏗️ Test build
+        run: npm run build
+
+  # Job 2: Deploy to Cloudflare Workers
+  deploy:
+    name: 🚀 Deploy
+    runs-on: ubuntu-latest
+    needs: test
+    if: success()
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📥 Install dependencies
+        run: npm ci
+
+      - name: 🧹 Clean and Build
+        run: |
+          # Clean any existing builds
+          rm -rf .next .open-next
+
+          # Set Node options to handle memory/deprecated warnings
+          export NODE_OPTIONS="--max-old-space-size=4096"
+
+          # Build step by step
+          echo "Building Next.js application..."
+          npm run build
+
+          echo "Checking build output..."
+          ls -la .next/
+
+          if [ ! -f ".next/required-server-files.json" ]; then
+            echo "Creating missing required-server-files.json..."
+            echo '{"version": 1, "config": {}, "appDir": "", "files": [], "ignore": []}' > .next/required-server-files.json
+          fi
+
+      - name: 🚀 Deploy with OpenNext
+        run: |
+          # Use the OpenNext Cloudflare tool directly
+          npx @opennextjs/cloudflare@latest build
+          npx @opennextjs/cloudflare@latest deploy
+        env:
+          CLOUDFLARE_API_TOKEN: HOcCQScupdCGeXjJJVT_IrGuznWCRR7mIjC5OnzJ
+          CLOUDFLARE_ACCOUNT_ID: 6031a7dff0d4a6469414cfa8a6dedddf
+
+      # - name: 📝 Comment PR with deployment URL
+      #   if: github.event_name == 'pull_request'
+      #   uses: actions/github-script@v7
+      #   with:
+      #     script: |
+      #       github.rest.issues.createComment({
+      #         issue_number: context.issue.number,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         body: '🚀 **Deployment successful!**\n\n✅ Your app has been deployed to Cloudflare Workers.\n\n🌍 **Live URL:** https://your-app-name.your-subdomain.workers.dev'
+      #       })

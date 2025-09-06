@@ -1,0 +1,50 @@
+/* Rodrigo Hero Video Styles */
+.rodrigo-hero {
+  position: relative;
+  overflow: visible;
+}
+
+/* Desktop-specific video clipping behavior */
+@media (min-width: 768px) {
+  /* Keep hero normal height, but let video extend */
+  .rodrigo-hero {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .rodrigo-hero .mainscreen-container {
+    position: relative;
+    z-index: 1;
+    /* Push the video container down so it extends beyond the hero */
+    transform: translateY(15vh);
+  }
+  
+  .rodrigo-hero .video-container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Next section needs to push up to overlap the extended video */
+  .rodrigo-hero + * {
+    position: relative;
+    z-index: 10;
+    margin-top: -10vh; /* Negative margin to overlap the extended video */
+    background: #000;
+    border-radius: 20px 20px 0 0;
+    padding-top: 8rem; /* Extra padding to account for the video overlap */
+  }
+}
+
+/* Mobile: Normal behavior */
+@media (max-width: 767px) {
+  .rodrigo-hero .mainscreen-container {
+    transform: none;
+  }
+  
+  .rodrigo-hero + * {
+    margin-top: 0;
+    background: transparent;
+    border-radius: 0;
+    padding-top: 0;
+  }
+} 

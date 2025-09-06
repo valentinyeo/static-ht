@@ -1,0 +1,53 @@
+/* === Hypertask Features Utility Classes === */
+
+.feature-section {
+  @apply py-8 md:py-4;
+}
+
+.feature-container {
+  @apply max-w-[85%] mx-auto flex flex-col items-center;
+}
+
+.feature-image-container {
+  @apply w-full mb-8 max-w-[1100px] mx-auto rounded-lg;
+}
+
+.gradient-background {
+  @apply flex flex-row items-stretch justify-center bg-cover bg-center rounded-lg min-h-[450px];
+}
+
+.gradient-layout-horizontal {
+  @apply flex flex-col md:flex-row gap-8 md:gap-[30px] p-4 md:p-[40px] w-full;
+}
+
+.gradient-title {
+  @apply text-[2rem] md:text-[2.8rem] font-bold mb-2 md:mb-4;
+}
+
+.gradient-description {
+  @apply text-[1rem] md:text-[1.2rem] text-white/90 mb-4;
+}
+
+.sub-features-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-[2rem] w-full max-w-[1200px];
+}
+
+.sub-feature {
+  @apply bg-black/50 rounded-lg p-6 border border-white/10 hover:translate-y-[-5px] hover:shadow-lg transition-transform;
+}
+
+.sub-feature-title {
+  @apply text-[1.4rem] font-semibold mb-2 text-left;
+}
+
+.sub-feature-description {
+  @apply text-white/75 font-medium text-[1.05rem] text-left;
+}
+
+.image-wrapper-half {
+  @apply flex-1 flex justify-center items-center max-h-full;
+}
+
+.feature-screen-plain {
+  @apply rounded-lg w-[90%] md:w-[110%] max-h-[300px] md:max-h-[500px] object-cover;
+} 
