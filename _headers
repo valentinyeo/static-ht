@@ -1,0 +1,19 @@
+# Cache static assets for 1 year
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache videos for 1 year
+/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache images for 1 year
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache HTML for 5 minutes
+/*.html
+  Cache-Control: public, max-age=300
+
+# Cache JS for 1 hour
+/*.js
+  Cache-Control: public, max-age=3600

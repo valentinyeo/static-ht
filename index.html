@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stop Project Chaos Instantly - Hypertask</title>
+  <meta name="description" content="The best project management app for AI-powered productivity. Turn voice into tasks, get smart summaries, and eliminate project chaos with Hypertask.">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/images/gradients/gradient (13).avif" as="image" type="image/avif">
+  <link rel="preload" href="/hypertask_white.png" as="image" type="image/png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Critical CSS inline -->
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: Inter, system-ui, sans-serif; 
+      background: #000; 
+      color: #fff; 
+      line-height: 1.6;
+    }
+    
+    /* Header */
+    .header {
+      position: sticky;
+      top: 1.25rem;
+      z-index: 9999;
+      width: 90vw;
+      margin: 0 auto;
+      background: #000;
+      border: 1px solid transparent;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0.75rem;
+      height: 3.5rem;
+    }
+    
+    @media (min-width: 640px) {
+      .header-container {
+        padding: 0 2rem;
+        height: 4rem;
+      }
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+    
+    .logo img {
+      height: 1.5rem;
+      width: auto;
+    }
+    
+    @media (min-width: 640px) {
+      .logo img {
+        height: 1.75rem;
+      }
+    }
+    
+    .desktop-nav {
+      display: none;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .desktop-nav {
+        display: flex;
+      }
+    }
+    
+    .nav-link {
+      color: #a3a3a3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .nav-link:hover {
+      color: white;
+    }
+    
+    .desktop-auth {
+      display: none;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    
+    @media (min-width: 768px) {
+      .desktop-auth {
+        display: flex;
+      }
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+    
+    .mobile-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .mobile-cta {
+        display: none;
+      }
+    }
+    
+    .hamburger {
+      background: none;
+      border: none;
+      color: white;
+      padding: 0.5rem;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+    
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      background-image: url('/images/gradients/gradient (13).avif');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      padding: 0 0.75rem;
+    }
+    
+    @media (min-width: 640px) {
+      .hero {
+        padding: 0 1.5rem;
+      }
+    }
+    
+    .hero-container {
+      max-width: 1808px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-content {
+        flex-direction: row;
+        text-align: left;
+        gap: 4rem;
+      }
+    }
+    
+    .hero-text {
+      flex: 1;
+      z-index: 10;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    
+    @media (min-width: 640px) {
+      .hero-title {
+        font-size: 4rem;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 5rem;
+      }
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #a3a3a3;
+      margin-bottom: 2rem;
+    }
+    
+    @media (min-width: 640px) {
+      .hero-subtitle {
+        font-size: 1.5rem;
+      }
+    }
+    
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    @media (min-width: 640px) {
+      .hero-cta {
+        flex-direction: row;
+      }
+    }
+    
+    .hero-video {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hero-video video {
+      max-width: 95%;
+      width: 100%;
+      height: auto;
+      border-radius: 0.5rem;
+    }
+    
+    @media (min-width: 1024px) {
+      .hero-video video {
+        max-width: 70%;
+      }
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      background: #000;
+      padding: 1rem;
+      z-index: 50;
+      border-radius: 0 0 0.75rem 0.75rem;
+    }
+    
+    .mobile-menu.show {
+      display: block;
+    }
+    
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .mobile-nav a {
+      color: #a3a3a3;
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      transition: all 0.2s;
+    }
+    
+    .mobile-nav a:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Features */
+    .features {
+      padding: 4rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .features h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature-card {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card p {
+      color: #a3a3a3;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 4rem 1rem;
+      text-align: center;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    }
+    
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .cta-content h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-content p {
+      font-size: 1.25rem;
+      color: #a3a3a3;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-btn {
+      font-size: 1.125rem;
+      padding: 1rem 2rem;
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 2rem 1rem;
+      text-align: center;
+      border-top: 1px solid #374151;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer p {
+      color: #a3a3a3;
+    }
+  </style>
+  
+  <!-- Minimal JavaScript -->
+  <script src="/minimal.js" defer></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <!-- Logo -->
+      <div class="logo-container">
+        <a href="/" class="logo">
+          <img src="/hypertask_white.png" alt="HYPERTASK.AI Logo" loading="lazy">
+        </a>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav">
+        <a href="/pricing" class="nav-link">Pricing</a>
+        <a href="/features" class="nav-link">Features</a>
+        <a href="https://help.hypertask.ai/" class="nav-link" target="_blank" rel="noopener">Help</a>
+      </nav>
+      
+      <!-- Desktop Auth Buttons -->
+      <div class="desktop-auth">
+        <a href="https://app.hypertask.ai/login" class="btn btn-secondary" target="_blank" rel="noopener">Login</a>
+        <a href="https://app.hypertask.ai/signup" class="btn btn-primary" target="_blank" rel="noopener">Get Started</a>
+      </div>
+      
+      <!-- Mobile CTA + Menu Button -->
+      <div class="mobile-cta">
+        <a href="https://app.hypertask.ai/signup" class="btn btn-primary" target="_blank" rel="noopener">Get Started</a>
+        <button class="hamburger" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+          ☰
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+      <nav class="mobile-nav">
+        <a href="/pricing">Pricing</a>
+        <a href="/features">Features</a>
+        <a href="https://help.hypertask.ai/" target="_blank" rel="noopener">Help</a>
+        <div style="padding-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <a href="https://app.hypertask.ai/login" class="btn btn-secondary" target="_blank" rel="noopener">Login</a>
+          <a href="https://app.hypertask.ai/signup" class="btn btn-primary" target="_blank" rel="noopener">Get Started</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">Stop Project Chaos Instantly</h1>
+            <p class="hero-subtitle">
+              The best project management app for AI-powered productivity. Turn voice into tasks, get smart summaries, and eliminate project chaos with Hypertask.
+            </p>
+            <div class="hero-cta">
+              <a href="https://app.hypertask.ai/signup" class="btn btn-primary" target="_blank" rel="noopener">Get Started Free</a>
+              <a href="https://app.hypertask.ai/login" class="btn btn-secondary" target="_blank" rel="noopener">Login</a>
+            </div>
+          </div>
+          
+          <div class="hero-video">
+            <video
+              src="/board-inbox-task.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              loading="lazy"
+            ></video>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+      <h2>Everything you need to manage projects</h2>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>AI-Powered Task Creation</h3>
+          <p>Turn voice into structured tasks with AI that understands context and priorities.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3>Smart Project Boards</h3>
+          <p>Organize tasks with intelligent boards that adapt to your workflow.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3>Voice Dictation</h3>
+          <p>Speak your tasks and let AI convert them into actionable items.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>Ready to eliminate project chaos?</h2>
+        <p>Join thousands of teams already using Hypertask to stay organized and productive.</p>
+        <a href="https://app.hypertask.ai/signup" class="btn btn-primary cta-btn" target="_blank" rel="noopener">
+          Start Free Trial
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>© 2024 Hypertask. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
